@@ -41,7 +41,7 @@ configuration:
   input_format:
     type: string
     required: false
-    description: Input field name format: 'passages' (default API), 'documents' (Dify format), or 'auto' (auto-detect)
+    description: "Input field name format: 'passages' (default API), 'documents' (Dify format), or 'auto' (auto-detect)"
     default: auto
     enum:
       - passages
@@ -50,7 +50,7 @@ configuration:
   output_format:
     type: string
     required: false
-    description: Output format: 'standard' (with index field) or 'simple' (without index)
+    description: "Output format: 'standard' (with index field) or 'simple' (without index)"
     default: standard
     enum:
       - standard
