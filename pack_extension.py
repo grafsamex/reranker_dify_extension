@@ -44,6 +44,11 @@ def pack_extension():
                 print(f"  ✓ Добавлен: {file_name}")
             else:
                 print(f"  ✗ Пропущен (не найден): {file_name}")
+                
+        # Проверка содержимого
+        print("\nПроверка содержимого архива:")
+        for info in zipf.infolist():
+            print(f"  - {info.filename} ({info.file_size} bytes)")
     
     # Проверяем размер файла
     file_size = output_file.stat().st_size
@@ -58,4 +63,3 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Ошибка при упаковке: {e}")
         exit(1)
-

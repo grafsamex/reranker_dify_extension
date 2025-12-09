@@ -9,21 +9,6 @@
       <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="redBright" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#f87171;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
-    </linearGradient>
-    <filter id="shadowDeep" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
-      <feOffset dx="0" dy="3" result="offsetblur"/>
-      <feComponentTransfer>
-        <feFuncA type="linear" slope="0.4"/>
-      </feComponentTransfer>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
     <filter id="textGlow">
       <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
       <feMerge>
@@ -32,89 +17,20 @@
       </feMerge>
     </filter>
   </defs>
-  
-  <!-- Background circle -->
-  <circle cx="64" cy="64" r="60" fill="url(#bgDark)" filter="url(#shadowDeep)"/>
+  <circle cx="64" cy="64" r="60" fill="url(#bgDark)"/>
   <circle cx="64" cy="64" r="58" fill="none" stroke="url(#redMain)" stroke-width="1" opacity="0.2"/>
-  
-  <!-- Letter S -->
   <g transform="translate(38, 64)">
-    <!-- Top part of S -->
-    <path d="M 0 -24 
-             C -6 -24, -10 -20, -10 -14
-             C -10 -8, -6 -4, 0 -4
-             C 6 -4, 10 -8, 10 -14
-             C 10 -20, 6 -24, 0 -24 Z" 
-          fill="url(#redMain)" filter="url(#textGlow)"/>
-    
-    <!-- Middle part of S -->
+    <path d="M 0 -24 C -6 -24, -10 -20, -10 -14 C -10 -8, -6 -4, 0 -4 C 6 -4, 10 -8, 10 -14 C 10 -20, 6 -24, 0 -24 Z" fill="url(#redMain)" filter="url(#textGlow)"/>
     <rect x="-10" y="-2" width="20" height="4" rx="2" fill="url(#redMain)" filter="url(#textGlow)"/>
-    
-    <!-- Bottom part of S -->
-    <path d="M 0 4 
-             C 6 4, 10 8, 10 14
-             C 10 20, 6 24, 0 24
-             C -6 24, -10 20, -10 14
-             C -10 8, -6 4, 0 4 Z" 
-          fill="url(#redMain)" filter="url(#textGlow)"/>
-    
-    <!-- Inner cutouts for S shape -->
-    <path d="M 0 -20 
-             C -4 -20, -6 -16, -6 -12
-             C -6 -8, -4 -4, 0 -4
-             C 4 -4, 6 -8, 6 -12
-             C 6 -16, 4 -20, 0 -20 Z" 
-          fill="url(#bgDark)"/>
-    
-    <path d="M 0 4 
-             C 4 4, 6 8, 6 12
-             C 6 16, 4 20, 0 20
-             C -4 20, -6 16, -6 12
-             C -6 8, -4 4, 0 4 Z" 
-          fill="url(#bgDark)"/>
+    <path d="M 0 4 C 6 4, 10 8, 10 14 C 10 20, 6 24, 0 24 C -6 24, -10 20, -10 14 C -10 8, -6 4, 0 4 Z" fill="url(#redMain)" filter="url(#textGlow)"/>
+    <path d="M 0 -20 C -4 -20, -6 -16, -6 -12 C -6 -8, -4 -4, 0 -4 C 4 -4, 6 -8, 6 -12 C 6 -16, 4 -20, 0 -20 Z" fill="url(#bgDark)"/>
+    <path d="M 0 4 C 4 4, 6 8, 6 12 C 6 16, 4 20, 0 20 C -4 20, -6 16, -6 12 C -6 8, -4 4, 0 4 Z" fill="url(#bgDark)"/>
   </g>
-  
-  <!-- Letter B -->
   <g transform="translate(90, 64)">
-    <!-- Left vertical bar -->
     <rect x="-12" y="-24" width="6" height="48" rx="3" fill="url(#redMain)" filter="url(#textGlow)"/>
-    
-    <!-- Top loop of B -->
-    <path d="M -6 -24 
-             L 2 -24
-             C 8 -24, 12 -20, 12 -14
-             C 12 -8, 8 -4, 2 -4
-             L -6 -4 Z" 
-          fill="url(#redMain)" filter="url(#textGlow)"/>
-    
-    <!-- Inner cutout for top loop -->
-    <path d="M -4 -20 
-             L 0 -20
-             C 4 -20, 6 -16, 6 -12
-             C 6 -8, 4 -4, 0 -4
-             L -4 -4 Z" 
-          fill="url(#bgDark)"/>
-    
-    <!-- Bottom loop of B -->
-    <path d="M -6 4 
-             L 2 4
-             C 8 4, 12 8, 12 14
-             C 12 20, 8 24, 2 24
-             L -6 24 Z" 
-          fill="url(#redMain)" filter="url(#textGlow)"/>
-    
-    <!-- Inner cutout for bottom loop -->
-    <path d="M -4 8 
-             L 0 8
-             C 4 8, 6 12, 6 16
-             C 6 20, 4 24, 0 24
-             L -4 24 Z" 
-          fill="url(#bgDark)"/>
+    <path d="M -6 -24 L 2 -24 C 8 -24, 12 -20, 12 -14 C 12 -8, 8 -4, 2 -4 L -6 -4 Z" fill="url(#redMain)" filter="url(#textGlow)"/>
+    <path d="M -4 -20 L 0 -20 C 4 -20, 6 -16, 6 -12 C 6 -8, 4 -4, 0 -4 L -4 -4 Z" fill="url(#bgDark)"/>
+    <path d="M -6 4 L 2 4 C 8 4, 12 8, 12 14 C 12 20, 8 24, 2 24 L -6 24 Z" fill="url(#redMain)" filter="url(#textGlow)"/>
+    <path d="M -4 8 L 0 8 C 4 8, 6 12, 6 16 C 6 20, 4 24, 0 24 L -4 24 Z" fill="url(#bgDark)"/>
   </g>
-  
-  <!-- Decorative elements -->
-  <circle cx="28" cy="28" r="2.5" fill="url(#redMain)" opacity="0.5"/>
-  <circle cx="100" cy="28" r="2.5" fill="url(#redMain)" opacity="0.5"/>
-  <circle cx="28" cy="100" r="2.5" fill="url(#redMain)" opacity="0.5"/>
-  <circle cx="100" cy="100" r="2.5" fill="url(#redMain)" opacity="0.5"/>
 </svg>
