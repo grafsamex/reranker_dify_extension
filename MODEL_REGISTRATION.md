@@ -19,7 +19,7 @@
 
 Dify автоматически обнаруживает провайдера через:
 
-- **manifest.json** - содержит `provider_class: "main:BGERerankerProvider"`
+- **manifest.yaml** - содержит `provider_class: "main:BGERerankerProvider"`
 - **main.py** - содержит класс `BGERerankerProvider`
 - Класс провайдера предоставляет информацию о модели
 

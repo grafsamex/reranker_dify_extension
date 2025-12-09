@@ -72,7 +72,8 @@ cd rerank
 
 # Создайте ZIP архив
 zip -r bge-reranker-extension.difypkg \
-  manifest.json \
+  manifest.yaml \
+  icon.svg \
   main.py \
   requirements.txt \
   README.md \
@@ -81,7 +82,7 @@ zip -r bge-reranker-extension.difypkg \
 
 # Или используйте Python
 python -m zipfile -c bge-reranker-extension.difypkg \
-  manifest.json main.py requirements.txt README.md __init__.py INSTALL.md
+  manifest.yaml icon.svg main.py requirements.txt README.md __init__.py INSTALL.md
 ```
 
 ### Вариант B: Использование tar.gz
@@ -89,7 +90,8 @@ python -m zipfile -c bge-reranker-extension.difypkg \
 ```bash
 cd rerank
 tar -czf bge-reranker-extension.tar.gz \
-  manifest.json \
+  manifest.yaml \
+  icon.svg \
   main.py \
   requirements.txt \
   README.md \

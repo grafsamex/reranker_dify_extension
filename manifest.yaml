@@ -1,0 +1,67 @@
+name: "BGE Reranker v2 m3"
+display_name: "BGE Reranker"
+description: "High-performance document reranking service using BAAI/bge-reranker-v2-m3 model. Reranks documents by relevance to search queries using state-of-the-art neural reranking."
+version: "1.0.0"
+author: "grafsamex"
+type: "reranker_provider"
+category: "search"
+tags:
+  - "reranker"
+  - "search"
+  - "nlp"
+  - "ranking"
+  - "bge"
+provider_class: "main:BGERerankerProvider"
+entry_point: "main:rerank"
+api_endpoint: "/rerank"
+health_endpoint: "/health"
+supported_formats:
+  - "json"
+model_name: "BAAI/bge-reranker-v2-m3"
+icon: "icon.svg"
+configuration:
+  api_url:
+    type: "string"
+    required: true
+    description: "URL of the reranker API service"
+    default: "http://localhost:8009"
+  timeout:
+    type: "integer"
+    required: false
+    description: "Request timeout in seconds"
+    default: 30
+  top_k:
+    type: "integer"
+    required: false
+    description: "Number of top results to return"
+    default: 5
+    min: 1
+    max: 100
+  input_format:
+    type: "string"
+    required: false
+    description: "Input field name format: 'passages' (default API), 'documents' (Dify format), or 'auto' (auto-detect)"
+    default: "auto"
+    enum:
+      - "passages"
+      - "documents"
+      - "auto"
+  output_format:
+    type: "string"
+    required: false
+    description: "Output format: 'standard' (with index field) or 'simple' (without index)"
+    default: "standard"
+    enum:
+      - "standard"
+      - "simple"
+requirements:
+  python: ">=3.11"
+  dependencies:
+    - "requests>=2.31.0"
+metadata:
+  model: "BAAI/bge-reranker-v2-m3"
+  supports_gpu: true
+  max_documents: 1000
+  max_query_length: 512
+  max_document_length: 512
+
