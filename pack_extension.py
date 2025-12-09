@@ -19,7 +19,6 @@ def pack_extension():
     # Файлы для включения в пакет
     files_to_include = [
         "manifest.yaml",
-        "icon.svg",
         "main.py",
         "provider_registry.py",
         "requirements.txt",

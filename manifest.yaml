@@ -11,7 +11,6 @@ description:
   zh_Hans: 使用 BAAI/bge-reranker-v2-m3 模型的高性能文档重排序服务。
   pt_BR: Serviço de reclassificação de documentos de alto desempenho usando o modelo BAAI/bge-reranker-v2-m3.
   ru_RU: Высокопроизводительный сервис реранкинга документов с использованием модели BAAI/bge-reranker-v2-m3.
-icon: icon.svg
 author: grafsamex
 tags: [reranker, search, bge]
 model:
