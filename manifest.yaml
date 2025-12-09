@@ -1,7 +1,11 @@
 name: bge_reranker_v2_m3
-label: "BGE Reranker"
+label: 
+  en_US: "BGE Reranker"
+  ru_RU: "BGE Reranker"
 version: 1.0.0
-description: "High-performance document reranking service using BAAI/bge-reranker-v2-m3 model."
+description: 
+  en_US: "High-performance document reranking service using BAAI/bge-reranker-v2-m3 model."
+  ru_RU: "Высокопроизводительный сервис реранкинга документов с использованием модели BAAI/bge-reranker-v2-m3."
 type: reranker
 icon: icon.svg
 author: grafsamex
