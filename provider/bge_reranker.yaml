@@ -1,0 +1,95 @@
+background: '#F9FAFB'
+configurate_methods:
+- customizable-model
+extra:
+  python:
+    model_sources:
+    - models/rerank/rerank.py
+help:
+  title:
+    en_US: How to integrate with BGE Reranker
+    ru_RU: Как интегрировать BGE Reranker
+  url:
+    en_US: https://github.com/your-repo/bge-reranker
+icon_large:
+  en_US: icon.svg
+icon_small:
+  en_US: icon.svg
+label:
+  en_US: BGE Reranker
+  ru_RU: BGE Reranker
+model_credential_schema:
+  credential_form_schemas:
+  - label:
+      en_US: API URL
+      ru_RU: API URL
+    placeholder:
+      en_US: Base URL of BGE Reranker API service, e.g. http://localhost:8009
+      ru_RU: Базовый URL сервиса BGE Reranker API, например http://localhost:8009
+    required: true
+    type: text-input
+    variable: api_url
+  - default: '30'
+    label:
+      en_US: Timeout
+      ru_RU: Таймаут
+    placeholder:
+      en_US: Request timeout in seconds
+      ru_RU: Таймаут запроса в секундах
+    required: false
+    type: text-input
+    variable: timeout
+  - default: '5'
+    label:
+      en_US: Top K
+      ru_RU: Количество результатов
+    placeholder:
+      en_US: Number of top results to return
+      ru_RU: Количество возвращаемых результатов
+    required: false
+    type: text-input
+    variable: top_k
+  - default: auto
+    label:
+      en_US: Input Format
+      ru_RU: Формат входных данных
+    options:
+    - label:
+        en_US: Auto
+        ru_RU: Авто
+      value: auto
+    - label:
+        en_US: Passages
+        ru_RU: Passages
+      value: passages
+    - label:
+        en_US: Documents
+        ru_RU: Документы
+      value: documents
+    placeholder:
+      en_US: Input field name format
+      ru_RU: Формат имени поля входных данных
+    required: false
+    type: select
+    variable: input_format
+  - default: '512'
+    label:
+      en_US: Context Size
+      ru_RU: Размер контекста
+    placeholder:
+      en_US: Model context size
+      ru_RU: Размер контекста модели
+    required: false
+    type: text-input
+    variable: context_size
+  model:
+    label:
+      en_US: Model Name
+      ru_RU: Имя модели
+    placeholder:
+      en_US: Enter your model name, e.g. BAAI/bge-reranker-v2-m3
+      ru_RU: Введите имя модели, например BAAI/bge-reranker-v2-m3
+provider: bge_reranker
+supported_model_types:
+- rerank
+

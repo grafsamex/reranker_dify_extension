@@ -1,48 +1,37 @@
-version: 0.0.1
-type: model
-name: bge_reranker
+author: grafsamex
+created_at: "2025-01-01T00:00:00.00000000Z"
+description:
+  en_US: BGE Reranker
+  ru_RU: BGE Reranker
+icon: icon.svg
 label:
   en_US: BGE Reranker
-  zh_Hans: BGE Reranker
-  pt_BR: BGE Reranker
   ru_RU: BGE Reranker
-description:
-  en_US: High-performance document reranking service using BAAI/bge-reranker-v2-m3 model.
-  zh_Hans: 使用 BAAI/bge-reranker-v2-m3 模型的高性能文档重排序服务。
-  pt_BR: Serviço de reclassificação de documentos de alto desempenho usando o modelo BAAI/bge-reranker-v2-m3.
-  ru_RU: Высокопроизводительный сервис реранкинга документов с использованием модели BAAI/bge-reranker-v2-m3.
-author: grafsamex
-tags: [reranker, search, bge]
-model:
-  api:
-    type: python
-    entry_point: main:rerank
-    provider_class: main:BGERerankerProvider
-  
-  credentials_schema:
-    api_url:
-      type: string
-      required: true
-      label:
-        en_US: API URL
-        ru_RU: API URL
-      help:
-        en_US: URL of the reranker API service (e.g. http://localhost:8009)
-        ru_RU: URL сервиса Reranker API (например, http://localhost:8009)
-      default: "http://localhost:8009"
-    
-    timeout:
-      type: number
-      required: false
-      label:
-        en_US: Timeout
-        ru_RU: Таймаут
-      default: 30
-      
-    top_k:
-      type: number
-      required: false
-      label:
-        en_US: Top K
-        ru_RU: Количество результатов
-      default: 5
+meta:
+  arch:
+    - amd64
+    - arm64
+  runner:
+    entrypoint: main
+    language: python
+    version: "3.12"
+  version: 0.0.1
+name: bge_reranker
+plugins:
+  models:
+    - provider/bge_reranker.yaml
+resource:
+  memory: 268435456
+  permission:
+    model:
+      enabled: true
+      llm: false
+      moderation: false
+      rerank: true
+      speech2text: false
+      text_embedding: false
+      tts: false
+    tool:
+      enabled: false
+type: plugin
+version: 0.1.0
