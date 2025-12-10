@@ -1,23 +1,9 @@
-"""
-BGE Reranker Extension for Dify
-"""
+"""BGE Reranker Extension for Dify."""
 
-__version__ = "1.0.0"
+__version__ = "0.1.0"
 __author__ = "BGE Reranker Team"
 
-from .main import (
-    rerank, 
-    BGEReranker, 
-    BGERerankerProvider,
-    validate_config,
-    get_reranker_provider
-)
+# Public surface of the package is the plugin runner.
+from .main import plugin
 
-__all__ = [
-    "rerank", 
-    "BGEReranker", 
-    "BGERerankerProvider",
-    "validate_config",
-    "get_reranker_provider"
-]
-
+__all__ = ["plugin", "__version__", "__author__"]

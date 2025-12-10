@@ -5,16 +5,13 @@ extra:
   python:
     model_sources:
     - models/rerank/rerank.py
+    provider_source: provider/bge_reranker.py
 help:
   title:
     en_US: How to integrate with BGE Reranker
     ru_RU: Как интегрировать BGE Reranker
   url:
     en_US: https://github.com/your-repo/bge-reranker
-icon_large:
-  en_US: icon.svg
-icon_small:
-  en_US: icon.svg
 label:
   en_US: BGE Reranker
   ru_RU: BGE Reranker
@@ -92,4 +89,3 @@ model_credential_schema:
 provider: bge_reranker
 supported_model_types:
 - rerank
-

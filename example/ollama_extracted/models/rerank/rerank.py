@@ -26,9 +26,9 @@ from dify_plugin.errors.model import (
 logger = logging.getLogger(__name__)
 
 
-class BGERerankModel(RerankModel):
+class OllamaRerankModel(RerankModel):
     """
-    Model class for BGE Reranker v2 m3 model.
+    Model class for an Ollama rerank model.
     """
 
     def _invoke(
@@ -57,31 +57,26 @@ class BGERerankModel(RerankModel):
             return RerankResult(model=model, docs=[])
 
         headers = {"Content-Type": "application/json"}
-        api_url = credentials.get("api_url", "").rstrip("/")
-        timeout = float(credentials.get("timeout", 30))
-        top_k = top_n or int(credentials.get("top_k", 5))
-        input_format = credentials.get("input_format", "auto")
-        
-        # Determine input field name
-        if input_format == "documents":
-            input_field = "documents"
-        else:
-            input_field = "passages"
-        
-        endpoint_url = urljoin(api_url + "/", "rerank")
+        endpoint_url = credentials.get("base_url", "").rstrip("/")
+        if not endpoint_url.endswith("/rerank"):
+            endpoint_url = endpoint_url + "/api/rerank"
 
         payload = {
+            "model": model,
             "query": query,
-            input_field: documents,
-            "top_k": min(top_k, len(documents))
+            "documents": documents,
         }
+
+        # 添加可选参数
+        if top_n is not None:
+            payload["top_n"] = top_n
 
         try:
             response = requests.post(
                 endpoint_url, 
                 headers=headers, 
-                json=payload, 
-                timeout=timeout
+                data=json.dumps(payload), 
+                timeout=(10, 300)
             )
             response.raise_for_status()
             response_data = response.json()
@@ -89,20 +84,20 @@ class BGERerankModel(RerankModel):
             rerank_documents = []
             results = response_data.get("results", [])
             
+            # 如果指定了 top_n，只取前 top_n 个结果
             if top_n is not None:
                 results = results[:top_n]
 
             for item in results:
-                index = item.get("index", -1)
-                # Compatible with different response formats
+                index = item["index"]
+                # 兼容不同格式的响应
                 if "document" in item:
                     text = item["document"]
                 else:
-                    text = documents[index] if index >= 0 and index < len(documents) else ""
+                    text = documents[index] if index < len(documents) else ""
+                score = item["relevance_score"]
                 
-                score = item.get("score", item.get("relevance_score", 0.0))
-                
-                # Apply score threshold filter
+                # 应用分数阈值过滤
                 if score_threshold is None or score >= score_threshold:
                     rerank_document = RerankDocument(
                         index=index,
@@ -127,7 +122,7 @@ class BGERerankModel(RerankModel):
         except requests.exceptions.Timeout:
             raise InvokeConnectionError("Request timeout")
         except Exception as e:
-            logger.error(f"Unexpected error in BGE rerank: {str(e)}")
+            logger.error(f"Unexpected error in Ollama rerank: {str(e)}")
             raise InvokeError(f"Unexpected error: {str(e)}")
 
     def validate_credentials(self, model: str, credentials: dict) -> None:
@@ -139,13 +134,21 @@ class BGERerankModel(RerankModel):
         :return:
         """
         try:
-            api_url = credentials.get("api_url", "").rstrip("/")
-            health_url = urljoin(api_url + "/", "health")
-            timeout = float(credentials.get("timeout", 30))
-            
-            response = requests.get(health_url, timeout=min(timeout, 5))
-            response.raise_for_status()
-        except requests.exceptions.HTTPError as ex:
+            self._invoke(
+                model=model,
+                credentials=credentials,
+                query="What is the capital of the United States?",
+                documents=[
+                    "Carson City is the capital city of the American state of Nevada.",
+                    "The Commonwealth of the Northern Mariana Islands is a group of islands in the Pacific Ocean.",
+                ],
+                score_threshold=0.0001,
+            )
+        except InvokeError as ex:
+            raise CredentialsValidateFailedError(
+                f"An error occurred during credentials validation: {ex.description}"
+            )
+        except requests.HTTPError as ex:
             raise CredentialsValidateFailedError(
                 f"An error occurred during credentials validation: status code {ex.response.status_code}: {ex.response.text}"
             )
